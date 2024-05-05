@@ -11,6 +11,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.laboratorio4.R;
+import com.example.laboratorio4.databinding.ActivityNavigationBinding;
 import com.example.laboratorio4.fragmentos.ClimaFragment;
 import com.example.laboratorio4.fragmentos.GeolocalizacionFragment;
 import com.example.laboratorio4.viewModels.NavegationActivityViewModel;
@@ -18,54 +19,45 @@ import com.example.laboratorio4.viewModels.NavegationActivityViewModel;
 
 public class NavegationActivity extends AppCompatActivity {
 
-    private NavegationActivityViewModel navigationViewModel;
+    private NavegationActivityViewModel navigationActivityViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_navigation);
-
-        Button locationButton = findViewById(R.id.buttonToGeolocalizacion);
-        Button weatherButton = findViewById(R.id.buttonToClima);
+        ActivityNavigationBinding binding = ActivityNavigationBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.fragmentContainerView, new GeolocalizacionFragment());
+        transaction.replace(binding.fragmentContainerView.getId(), new GeolocalizacionFragment());
         transaction.commit();
 
-        locationButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getSupportFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.fragmentContainerView, new GeolocalizacionFragment())
-                        .commit();
-            }
+        binding.buttonToGeolocalizacion.setOnClickListener(view -> {
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(binding.fragmentContainerView.getId(), new GeolocalizacionFragment())
+                    .commit();
         });
 
-        weatherButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getSupportFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.fragmentContainerView, new ClimaFragment())
-                        .commit();
-            }
+        binding.buttonToClima.setOnClickListener(view -> {
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(binding.fragmentContainerView.getId(), new ClimaFragment())
+                    .commit();
         });
 
 
-        NavegationActivityViewModel navigationViewModel = new ViewModelProvider(this).get(NavegationActivityViewModel.class);
+        navigationActivityViewModel = new ViewModelProvider(this).get(NavegationActivityViewModel.class);
+        navigationActivityViewModel.getEnableNavigation().observe(this, enable -> {
+            binding.buttonToGeolocalizacion.setEnabled(enable);
+            binding.buttonToClima.setEnabled(enable);
 
-
-        navigationViewModel.getEnableNavigation().observe(this, new Observer<Boolean>() {
-            @Override
-            public void onChanged(Boolean enable) {
-
-                locationButton.setEnabled(enable);
-                weatherButton.setEnabled(enable);
-
-                int backgroundColor = enable ? android.R.color.white : android.R.color.darker_gray;
-                locationButton.setBackgroundColor(ContextCompat.getColor(NavegationActivity.this, backgroundColor));
-                weatherButton.setBackgroundColor(ContextCompat.getColor(NavegationActivity.this, backgroundColor));
+            if (enable) {
+                binding.buttonToGeolocalizacion.setBackgroundColor(ContextCompat.getColor(this, android.R.color.white));
+                binding.buttonToClima.setBackgroundColor(ContextCompat.getColor(this, android.R.color.white));
+            } else {
+                binding.buttonToGeolocalizacion.setBackgroundColor(ContextCompat.getColor(this, android.R.color.darker_gray));
+                binding.buttonToClima.setBackgroundColor(ContextCompat.getColor(this, android.R.color.darker_gray));
             }
         });
     }
