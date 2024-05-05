@@ -2,7 +2,11 @@ plugins {
     alias(libs.plugins.androidApplication)
 }
 
+
 android {
+    dataBinding {
+        enabled = true
+    }
     namespace 'com.example.laboratorio4'
     compileSdk 34
 
@@ -26,9 +30,26 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    buildFeatures{
+        viewBinding true
+    }
 }
 
 dependencies {
+
+    implementation 'com.google.android.material:material:1.9.0'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel:2.6.1'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-savedstate:2.6.1'
+    implementation "androidx.work:work-runtime:2.8.1"
+
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.google.code.gson:gson:2.10'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+
+    implementation 'androidx.navigation:navigation-fragment:2.5.3'
+    implementation 'androidx.navigation:navigation-ui:2.5.3'
+
+    implementation 'com.squareup.picasso:picasso:2.71828'
 
     implementation libs.appcompat
     implementation libs.material

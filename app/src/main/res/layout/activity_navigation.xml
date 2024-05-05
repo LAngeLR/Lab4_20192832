@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/main"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context="activity.NavegationActivity">
+
+
+        <FrameLayout
+            android:id="@+id/fragmentContainerView"
+            android:layout_width="match_parent"
+            android:background="@color/fondo_celeste"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/fondo_celeste"
+            android:padding="16dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/buttonToGeolocalizacion"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Geolocalizacion"
+                android:layout_weight="1"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginRight="8dp" />
+
+            <Button
+                android:id="@+id/buttonToClima"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Clima"
+                android:layout_weight="1"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginRight="8dp" />
+
+        </LinearLayout>
+
+    </LinearLayout>

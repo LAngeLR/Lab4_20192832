@@ -1,0 +1,64 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_marginTop="15dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/items">
+
+    <TextView
+        android:id="@+id/ciudad"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ciudad"
+        android:textSize="30sp"
+        android:textColor="@color/white"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"/>
+
+    <TextView
+        android:id="@+id/a"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Lat:"
+        android:textSize="18sp"
+        android:textColor="@color/white"
+        android:layout_below="@+id/ciudad"
+        android:layout_marginTop="36dp"
+        android:layout_marginStart="16dp"/>
+    <TextView
+        android:id="@+id/latitud"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Latitud"
+        android:textSize="18sp"
+        android:textColor="@color/white"
+        android:layout_below="@+id/ciudad"
+        android:layout_marginTop="36dp"
+        android:layout_marginStart="60dp"/>
+
+    <TextView
+        android:id="@+id/b"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Lon:"
+        android:textSize="18sp"
+        android:textColor="@color/white"
+        android:layout_below="@+id/ciudad"
+        android:layout_marginTop="36dp"
+        android:layout_marginStart="170dp"
+        android:layout_toEndOf="@+id/a"/>
+
+    <TextView
+        android:id="@+id/longitud"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Longitud"
+        android:textSize="18sp"
+        android:textColor="@color/white"
+        android:layout_below="@+id/ciudad"
+        android:layout_marginTop="36dp"
+        android:layout_marginStart="220dp"
+        android:layout_toEndOf="@+id/a"/>
+
+</RelativeLayout>
